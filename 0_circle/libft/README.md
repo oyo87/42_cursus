@@ -24,9 +24,9 @@ C standard library에 포함되어있지 않지만 유용하게 사용될 함수
 
 ## Part 2 - Additional functions
 
-- 'substr', 'strjoin', 'strtrim', 'split', 'itoa', 'strmapi', 'striteri',
-- 'putchar_fd', 'putstr_fd', 'putendl_fd', 'putnbr_fd'
+- `substr`, `strjoin`, `strtrim`, `split`, `itoa`, `strmapi`, `striteri`
+- `putchar_fd`, `putstr_fd`, `putendl_fd`, `putnbr_fd`
 
 ## Bonus part
 
-- 'lstnew', 'lstadd_front', 'lstsize', 'lstlast', 'lstadd_back', 'lstdelone', 'lstclear', 'lstiter', 'lstmap'
+- `lstnew`, `lstadd_front`, `lstsize`, `lstlast`, `lstadd_back`, `lstdelone`, `lstclear`, `lstiter`, `lstmap`
