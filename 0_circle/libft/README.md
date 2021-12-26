@@ -38,3 +38,5 @@ C standard library에 포함되어있지 않지만 유용하게 사용될 함수
 ## Bonus part
 
 - `lstnew`, `lstadd_front`, `lstsize`, `lstlast`, `lstadd_back`, `lstdelone`, `lstclear`, `lstiter`, `lstmap`
+
+추가할 내용 메모리 구조, 댕글링포인터, size_t, 운영체제별 자료형 바이트변화, 널가드, 파일디스크립터
