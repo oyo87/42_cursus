@@ -22,9 +22,10 @@ C standard library에 포함되어있지 않지만 유용하게 사용될 함수
   - 알파벳 소문자를 대문자로, 대문자를 소문자로 바꿔준다.
 - `strlen`, `strlcpy`, `strlcat`, `strnstr`, `strchr`, `strrchr`
   - strlen 함수는 문자열 s의 길이를 계산한다.
-  - strlcpy 함수는 src문자열을 dst문자열에다가 dstsize 만큼 복사해주는것이다. dstsize는 ‘\0’을 포함한 크기이기때문에 ‘\0’값이 보장되어있다. 리턴값은 소스의 길이를 리턴한다.
-  - strlcat 함수는 문자열 src를 dst뒤에 이어 붙이는 함수이다. 
-    - 자세히 나와있지 않은 man, 리턴
+  - strlcpy 함수는 src문자열을 dst문자열에다가 dstsize 만큼 복사해주는것이다. dstsize는 ‘\0’을 포함한 크기이기때문에 ‘\0’값이 보장되어있다. 반환값은 src의 길이 이다.
+  - strlcat 함수는 문자열 dst뒤에 src를 이어 붙이는 함수이다. 
+    - 반환값은 일반적으로 dstlen +srclen 이 반환되지만 (dstsize < dstlen + 1)인 경우 dstsize +srclen 이 반환된다.
+     - 의문점 man strlcat에서는 return을 두가지 케이스로 나누는것에 대한 내용을 찾을 수 없다. 하지만 테스트를 해보면 일반적으론 dstlen + srclen이 반환되지만 (dstsize < dstlen + 1) 인 경우에는 dstsize + srclen가 반환된다. man에 설명이 없어서 왜 이렇게 나눴을까 궁금해서 개인적으로 생각을 해봤다. 정상적인 경우라면 dstlen + srclen이 반환되는데 (dstsize < dstlen + 1) 인경우에는 원래 원하던 cat작동(dst뒤에 src 붙이기)이 제대로 이루어지지 않는다. 그러면 cat작동이 잘 이루어지지 않았다는것을 나타내기 위해 dstsize + srclen. 그러면 원래 원하던 반환값과 다른 값이 나오니까 제대로 작동이 되지 않았구나 라고 알 수 있다. 라고 대강 생각을 했었는데 dstlen, srclen, dstsize가 모두 같은 크기라면 반환값이 동일하기때문에 알아차릴 수 없다. 또한 잘 이루어지지 않았을때 0을 반환하면 차라리 한눈에 알아차릴텐데 굳이 dstsize + srclen을 반환한 이유는 무엇일지 제대로 해결하지는 못하였다.
 - `memset`, `bzero`, `memcpy`, `memmove` `memchr`, `memcmp`,
 - `atoi`
   - 
