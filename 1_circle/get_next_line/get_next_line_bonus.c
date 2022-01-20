@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibae <jibae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 18:33:12 by jibae             #+#    #+#             */
-/*   Updated: 2022/01/19 20:26:40 by jibae            ###   ########seoul.kr  */
+/*   Updated: 2022/01/19 20:44:16 by jibae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*get_static_str(int fd, char *static_str)
 {
@@ -117,14 +117,14 @@ static char	*get_new_static_str(char *static_str)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*static_str;
+	static char	*static_str[OPEN_MAX];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || OPEN_MAX < fd || BUFFER_SIZE <= 0)
 		return (0);
-	static_str = get_static_str(fd, static_str);
-	if (static_str == 0)
+	static_str[fd] = get_static_str(fd, static_str[fd]);
+	if (static_str[fd] == 0)
 		return (0);
-	line = get_line(static_str);
-	static_str = get_new_static_str(static_str);
+	line = get_line(static_str[fd]);
+	static_str[fd] = get_new_static_str(static_str[fd]);
 	return (line);
 }
