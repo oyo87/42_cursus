@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibae <jibae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 14:34:12 by jibae             #+#    #+#             */
-/*   Updated: 2022/04/04 15:46:09 by jibae            ###   ########seoul.kr  */
+/*   Created: 2022/04/07 21:02:16 by jibae             #+#    #+#             */
+/*   Updated: 2022/04/18 20:01:25 by jibae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char	*s, int c)
+int	ft_isspace(int c)
 {
-	char	*last;
-	char	find;
-	int		i;
+	unsigned char	temp;
 
-	last = (char *)s;
-	find = (char)c;
-	i = ft_strlen(s);
-	while (0 < i)
-	{
-		if (last[i] == find)
-			return (last + i);
-		i--;
-	}
-	if (last[i] == find)
-		return (last);
-	return (0);
+	temp = (unsigned char)c;
+	if (temp == '\t' || temp == '\n' || temp == '\v'
+		|| temp == '\f' || temp == '\r' || temp == ' ')
+		return (1);
+	else
+		return (0);
 }

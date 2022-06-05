@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibae <jibae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 14:34:12 by jibae             #+#    #+#             */
-/*   Updated: 2022/04/04 15:46:09 by jibae            ###   ########seoul.kr  */
+/*   Created: 2021/12/07 15:11:32 by jibae             #+#    #+#             */
+/*   Updated: 2021/12/18 18:58:24 by jibae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char	*s, int c)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	*last;
-	char	find;
-	int		i;
+	t_list	*result;
+	t_list	*temp;
 
-	last = (char *)s;
-	find = (char)c;
-	i = ft_strlen(s);
-	while (0 < i)
+	if (lst == 0 || f == 0)
+		return (0);
+	result = 0;
+	while (lst)
 	{
-		if (last[i] == find)
-			return (last + i);
-		i--;
+		temp = ft_lstnew((*f)(lst->content));
+		if (temp == 0)
+		{
+			ft_lstclear(&result, del);
+			return (0);
+		}
+		ft_lstadd_back(&result, temp);
+		lst = lst->next;
 	}
-	if (last[i] == find)
-		return (last);
-	return (0);
+	return (result);
 }

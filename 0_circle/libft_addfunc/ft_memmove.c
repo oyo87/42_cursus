@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibae <jibae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 14:34:12 by jibae             #+#    #+#             */
-/*   Updated: 2022/04/04 15:46:09 by jibae            ###   ########seoul.kr  */
+/*   Created: 2021/11/20 12:34:51 by jibae             #+#    #+#             */
+/*   Updated: 2021/12/20 01:30:19 by jibae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char	*s, int c)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*last;
-	char	find;
-	int		i;
+	unsigned char	*point_dst;
+	unsigned char	*point_src;
 
-	last = (char *)s;
-	find = (char)c;
-	i = ft_strlen(s);
-	while (0 < i)
+	if (dst == 0 && src == 0)
+		return (dst);
+	point_dst = (unsigned char *)dst;
+	point_src = (unsigned char *)src;
+	if (dst < src)
 	{
-		if (last[i] == find)
-			return (last + i);
-		i--;
+		while (len--)
+			*point_dst++ = *point_src++;
 	}
-	if (last[i] == find)
-		return (last);
-	return (0);
+	else
+	{
+		while (len--)
+			*(point_dst + len) = *(point_src + len);
+	}
+	return (dst);
 }

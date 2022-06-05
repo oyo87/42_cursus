@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibae <jibae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 14:34:12 by jibae             #+#    #+#             */
-/*   Updated: 2022/04/04 15:46:09 by jibae            ###   ########seoul.kr  */
+/*   Created: 2021/12/05 20:59:31 by jibae             #+#    #+#             */
+/*   Updated: 2021/12/14 20:53:09 by jibae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char	*s, int c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	char	*last;
-	char	find;
-	int		i;
+	unsigned int	i;
 
-	last = (char *)s;
-	find = (char)c;
-	i = ft_strlen(s);
-	while (0 < i)
+	if (s == 0 || f == 0)
+		return ;
+	i = 0;
+	while (s[i])
 	{
-		if (last[i] == find)
-			return (last + i);
-		i--;
+		f(i, &s[i]);
+		i++;
 	}
-	if (last[i] == find)
-		return (last);
-	return (0);
 }

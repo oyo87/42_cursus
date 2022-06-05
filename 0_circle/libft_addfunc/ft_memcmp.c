@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibae <jibae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 14:34:12 by jibae             #+#    #+#             */
-/*   Updated: 2022/04/04 15:46:09 by jibae            ###   ########seoul.kr  */
+/*   Created: 2021/12/02 17:21:17 by jibae             #+#    #+#             */
+/*   Updated: 2022/01/04 14:43:30 by jibae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char	*s, int c)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*last;
-	char	find;
-	int		i;
+	size_t			i;
+	unsigned char	*a1;
+	unsigned char	*a2;
 
-	last = (char *)s;
-	find = (char)c;
-	i = ft_strlen(s);
-	while (0 < i)
+	a1 = (unsigned char *)s1;
+	a2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n)
 	{
-		if (last[i] == find)
-			return (last + i);
-		i--;
+		if (a1[i] != a2[i])
+			return (a1[i] - a2[i]);
+		i++;
 	}
-	if (last[i] == find)
-		return (last);
 	return (0);
 }

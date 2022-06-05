@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibae <jibae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 14:34:12 by jibae             #+#    #+#             */
-/*   Updated: 2022/04/04 15:46:09 by jibae            ###   ########seoul.kr  */
+/*   Created: 2021/12/05 19:19:37 by jibae             #+#    #+#             */
+/*   Updated: 2021/12/15 18:55:19 by jibae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char	*s, int c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*last;
-	char	find;
-	int		i;
+	unsigned int	i;
+	char			*str;
 
-	last = (char *)s;
-	find = (char)c;
-	i = ft_strlen(s);
-	while (0 < i)
+	if (s == 0 || f == 0)
+		return (0);
+	str = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (str == 0)
+		return (0);
+	i = 0;
+	while (i < ft_strlen(s))
 	{
-		if (last[i] == find)
-			return (last + i);
-		i--;
+		str[i] = f(i, s[i]);
+		i++;
 	}
-	if (last[i] == find)
-		return (last);
-	return (0);
+	str[i] = '\0';
+	return (str);
 }

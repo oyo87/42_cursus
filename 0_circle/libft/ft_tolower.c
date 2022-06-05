@@ -6,13 +6,13 @@
 /*   By: jibae <jibae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:29:03 by jibae             #+#    #+#             */
-/*   Updated: 2021/12/03 21:46:51 by jibae            ###   ########seoul.kr  */
+/*   Updated: 2022/04/04 15:46:14 by jibae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int	c)
+int	ft_tolower(int c)
 {
 	if ('A' <= c && c <= 'Z')
 	{

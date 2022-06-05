@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibae <jibae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 14:34:12 by jibae             #+#    #+#             */
-/*   Updated: 2022/04/04 15:46:09 by jibae            ###   ########seoul.kr  */
+/*   Created: 2021/11/23 16:37:07 by jibae             #+#    #+#             */
+/*   Updated: 2021/12/12 16:25:56 by jibae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char	*s, int c)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char	*last;
-	char	find;
-	int		i;
+	size_t			i;
+	unsigned char	*str;
+	unsigned char	find;
 
-	last = (char *)s;
-	find = (char)c;
-	i = ft_strlen(s);
-	while (0 < i)
+	find = (unsigned char)c;
+	str = (unsigned char *)s;
+	i = 0;
+	while (i < n)
 	{
-		if (last[i] == find)
-			return (last + i);
-		i--;
+		if (str[i] == find)
+			return ((void *)str + i);
+		i++;
 	}
-	if (last[i] == find)
-		return (last);
 	return (0);
 }

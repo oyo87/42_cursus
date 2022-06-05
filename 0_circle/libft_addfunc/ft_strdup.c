@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibae <jibae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 14:34:12 by jibae             #+#    #+#             */
-/*   Updated: 2022/04/04 15:46:09 by jibae            ###   ########seoul.kr  */
+/*   Created: 2021/12/03 20:47:46 by jibae             #+#    #+#             */
+/*   Updated: 2021/12/13 15:42:08 by jibae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char	*s, int c)
+char	*ft_strdup(const char *s1)
 {
-	char	*last;
-	char	find;
+	char	*str;
 	int		i;
 
-	last = (char *)s;
-	find = (char)c;
-	i = ft_strlen(s);
-	while (0 < i)
+	str = malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (str == 0)
+		return (0);
+	i = 0;
+	while (s1[i])
 	{
-		if (last[i] == find)
-			return (last + i);
-		i--;
+		str[i] = s1[i];
+		i++;
 	}
-	if (last[i] == find)
-		return (last);
-	return (0);
+	str[i] = '\0';
+	return (str);
 }

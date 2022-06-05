@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibae <jibae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 14:34:12 by jibae             #+#    #+#             */
-/*   Updated: 2022/04/04 15:46:09 by jibae            ###   ########seoul.kr  */
+/*   Created: 2021/11/20 15:37:09 by jibae             #+#    #+#             */
+/*   Updated: 2021/12/20 02:40:43 by jibae            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char	*s, int c)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	char	*last;
-	char	find;
-	int		i;
+	size_t	i;
+	size_t	dstlen;
+	size_t	srclen;
 
-	last = (char *)s;
-	find = (char)c;
-	i = ft_strlen(s);
-	while (0 < i)
+	dstlen = ft_strlen(dst);
+	srclen = ft_strlen(src);
+	if (dstsize < dstlen + 1)
+		return (dstsize + srclen);
+	i = 0;
+	while (src[i] && dstlen + 1 + i < dstsize)
 	{
-		if (last[i] == find)
-			return (last + i);
-		i--;
+		dst[dstlen + i] = src[i];
+		i++;
 	}
-	if (last[i] == find)
-		return (last);
-	return (0);
+	dst[dstlen + i] = '\0';
+	return (dstlen + srclen);
 }
